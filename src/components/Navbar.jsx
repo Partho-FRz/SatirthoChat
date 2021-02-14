@@ -33,8 +33,8 @@ export default function Navbar() {
     const Apicall = async () => {
       const authObject = {
         'Public-Key': '1514a656-ee38-4378-9f66-d87afa4fe896',
-        'User-Name': 'Onto',
-        'User-Secret': '123123',
+        'User-Name': localStorage.getItem('userName'),
+        'User-Secret': localStorage.getItem('password'),
       };
       try {
         const data = await axios.get('https://api.chatengine.io/chats/me/', {
