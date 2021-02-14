@@ -27,7 +27,7 @@ export default function Navbar() {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [image, setImage] = React.useState(null);
+  const [image, setImage] = React.useState(localStorage.getItem('avatar'));
   const open = Boolean(anchorEl);
   useEffect(() => {
     const Apicall = async () => {
@@ -41,6 +41,7 @@ export default function Navbar() {
           headers: authObject,
         });
         setImage(data.data.avatar);
+        localStorage.setItem('avatar', data.data.avatar);
       } catch (err) {
         console.log(err, '..............');
       }
@@ -48,7 +49,7 @@ export default function Navbar() {
     if (!image) {
       Apicall();
     }
-  }, []);
+  }, [image]);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
